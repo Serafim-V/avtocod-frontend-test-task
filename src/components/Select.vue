@@ -68,6 +68,9 @@
       width: 100%;
       box-shadow: 0 5px 10px 1px lightgray;
       display: none;
+      @media(max-width: 425px) {
+        top: calc(100% - 15px);
+      }
     }
 
     &__item {
