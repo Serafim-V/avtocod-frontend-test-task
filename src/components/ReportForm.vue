@@ -31,6 +31,7 @@
 <script>
   import Select from './Select'
   import _ from 'lodash'
+  import data from '../common'
 
   export default {
     name: "ReportForm",
@@ -40,8 +41,8 @@
     data() {
       return {
         idError: null,
-        types: this.$store.getters.typeId,
-        status: this.$store.getters.status,
+        types: data.typeId,
+        status: data.status,
         id: '',
         type: ''
       }

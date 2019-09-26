@@ -4,9 +4,7 @@ export default {
       {id: '4F2YU08102KM26251', type: 'VIN', date: '26.05.2019 10:00:00', status: 'ERROR'},
       {id: 'A007AA197', type: 'ГРС', date: '26.05.2019 10:00:00', status: 'PROGRESS'},
       {id: 'XYZ12-3456789', type: 'BODY', date: '26.05.2019 10:00:00', status: 'DONE'},
-    ],
-    typeId: ['VIN', 'ГРЗ', 'BODY'],
-    status: ['ERROR', 'PROGRESS', 'DONE']
+    ]
   },
   getters: {
     reports: state => state.reports,
