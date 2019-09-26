@@ -7,9 +7,7 @@ export default {
     ]
   },
   getters: {
-    reports: state => state.reports,
-    typeId: state => state.typeId,
-    status: state => state.status
+    reports: state => state.reports
   },
   mutations: {
     addReport(state, report) {
