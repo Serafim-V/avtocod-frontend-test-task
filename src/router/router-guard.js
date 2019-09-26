@@ -1,8 +1,8 @@
 import store from '../store'
 
 export default function (to, from, next) {
-  store.dispatch('autoLogin')
-  const user = store.getters.getUser
+  store.dispatch('auth/autoLogin')
+  const user = store.getters['auth/getUser']
   if (user) {
     next()
   } else {

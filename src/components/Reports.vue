@@ -79,13 +79,13 @@
     name: "Reports",
     computed: {
       reports() {
-        return this.$store.getters.reports
+        return this.$store.getters['reports/reports']
       }
     },
     methods: {
       removeReport(id) {
         if (confirm('Удалить отчет?')) {
-          this.$store.dispatch('removeReport', id)
+          this.$store.dispatch('reports/removeReport', id)
         }
       }
     }

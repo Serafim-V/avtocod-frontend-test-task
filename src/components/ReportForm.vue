@@ -113,7 +113,7 @@
           date: new Date().toLocaleString().replace(/,/, ''),
           status: this.status[_.random(0, this.status.length - 1)]
         }
-        this.$store.dispatch('addReport', report)
+        this.$store.dispatch('reports/addReport', report)
       }
     }
   }

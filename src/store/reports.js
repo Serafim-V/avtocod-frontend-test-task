@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     reports: [
       {id: '4F2YU08102KM26251', type: 'VIN', date: '26.05.2019 10:00:00', status: 'ERROR'},

@@ -1,5 +1,6 @@
 const cookie = require('cookie')
 export default {
+  namespaced: true,
   state: {
     user: null
   },
@@ -22,11 +23,11 @@ export default {
     autoLogin() {
       const username = cookie.parse(document.cookie).user
       if (username === 'username') {
-        this.commit('setUser', username)
+        this.commit('auth/setUser', username)
       }
     },
     logout() {
-      this.commit('logout')
+      this.commit('auth/logout')
       const setCookie = cookie.serialize('user', '')
       document.cookie = setCookie
     }

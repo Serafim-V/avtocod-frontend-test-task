@@ -49,7 +49,7 @@
         e.preventDefault()
         if (!this.validate()) return
 
-        this.$store.commit('setUser', this.login)
+        this.$store.commit('auth/setUser', this.login)
 
         this.$router.push('/')
       },

@@ -23,21 +23,9 @@
 <script>
   export default {
     name: "Sidebar",
-    data() {
-      return {
-        nav: [
-          {
-            name: 'Список отчетов'
-          },
-          {
-            name: 'Выход'
-          }
-        ],
-      }
-    },
     methods: {
       logout() {
-        this.$store.dispatch('logout')
+        this.$store.dispatch('auth/logout')
         this.$router.push('/login')
       }
     }
