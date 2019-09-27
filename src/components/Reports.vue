@@ -71,7 +71,6 @@
         </div>
       </div>
     </template>
-    {{ REPORTS }}
   </div>
 </template>
 

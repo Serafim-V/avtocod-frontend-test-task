@@ -52,59 +52,74 @@
       ...mapActions({
         ADD_REPORT: 'reports/addReport'
       }),
-      validate() {
+
+      test(regExp, textError) {
         const id = this.id.trim()
-        let regExp
+        if (!regExp.test(id)) {
+          this.idError = textError
+          return false
+        } else {
+          return true
+        }
+      },
+      checkBody() {
+        let regExp, textError
+        regExp = new RegExp('.{7,15}')
+        textError = 'Значение должно быть от 7 до 15 символов'
+        if (!this.test(regExp, textError)) return
+
+        regExp = new RegExp('[A-Za-z0-9\\-\\s]{7,15}')
+        textError = 'Латиница, цифры, пробел и дефис(-)'
+        if (!this.test(regExp, textError)) return
+
+        this.idError = null
+      },
+      checkGRZ() {
+        let regExp, textError
+        const tmpl = '[АВЕКМНОРСТУХавекмнорстух]'
+
+        regExp = new RegExp(`.{8,9}`, 'i')
+        textError = 'Значение должно быть от 8 до 9 символов'
+        if (!this.test(regExp, textError)) return
+
+        regExp = new RegExp(`^${tmpl}.{7,8}`)
+        textError = 'Недопустимый символ 1'
+        if (!this.test(regExp, textError)) return
+
+        regExp = new RegExp(`^${tmpl}\\d{3}.{4,5}`)
+        textError = 'Символы 2-4 цифры'
+        if (!this.test(regExp, textError)) return
+
+        regExp = new RegExp(`^${tmpl}\\d{3}${tmpl}{2}.{2,3}`)
+        textError = 'Недопустимы символ 5-6'
+        if (!this.test(regExp, textError)) return
+
+        regExp = new RegExp(`^${tmpl}\\d{3}${tmpl}{2}\\d{2,3}`)
+        textError = 'Символы 7-9 цифры'
+        if (!this.test(regExp, textError)) return
+
+        this.idError = null
+      },
+      checkVIN() {
+        this.idError = null
+      },
+      validate() {
         switch (this.type) {
           case "BODY":
-            if (!/.{7,15}/.test(id)) {
-              this.idError = 'Значение должно быть от 7 до 15 символов'
-              return
-            }
-            if (!/[A-Za-z0-9\-\s]{7,15}/.test(id)) {
-              this.idError = 'Латиница, цифры, пробел и дефис(-)'
-              return
-            }
-            this.idError = null
+            this.checkBody()
             break
           case "VIN":
+            this.checkVIN()
             break
-
           case "ГРЗ":
-            if (!/.{8,9}/.test(id)) {
-              this.idError = 'Значение должно быть от 8 до 9 символов'
-              return
-            }
-
-            regExp = /^[АВЕКМНОРСТУХ].{7,8}/
-            if (!regExp.test(id)) {
-              this.idError = 'Недопустимый символ 1'
-              return
-            }
-
-            regExp = /^[АВЕКМНОРСТУХ]\d{3}.{4,5}/
-            if (!regExp.test(id)) {
-              this.idError = 'Символы 2-4 цифры'
-              return
-            }
-
-            regExp = /^[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}.{2,3}/
-            if (!regExp.test(id)) {
-              this.idError = 'Недопустимы символ 5-6'
-              return
-            }
-
-            regExp = /[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\d{2,3}/
-            if (!regExp.test(id)) {
-              this.idError = 'Символы 7-9 цифры'
-              return
-            }
-            this.idError = null
+            this.checkGRZ()
             break
         }
       },
       doSomething(type) {
         this.type = type
+        this.id = ''
+        this.idError = null
       },
       addReport(e) {
         e.preventDefault()
