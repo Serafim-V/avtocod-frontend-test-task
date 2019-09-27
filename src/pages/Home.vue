@@ -36,16 +36,6 @@
       Sidebar,
       ReportForm,
       Reports
-    },
-    data() {
-      return {
-        name: ''
-      }
-    },
-    computed: {
-      getUser() {
-        return this.$store.getters['auth/getUser']
-      }
     }
   }
 </script>

@@ -10,7 +10,7 @@
         <td></td>
         </thead>
         <tr
-            v-for="report in reports"
+            v-for="report in REPORTS"
             :key="report.id"
         >
           <td>{{ report.id }}</td>
@@ -42,7 +42,7 @@
       <div class="table">
         <div
             class="table__row table__row--width-769"
-            v-for="report in reports"
+            v-for="report in REPORTS"
             :key="report.id"
         >
           <div style="display: flex; justify-content: space-between; align-items: center">
@@ -71,21 +71,26 @@
         </div>
       </div>
     </template>
+    {{ REPORTS }}
   </div>
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
   export default {
     name: "Reports",
     computed: {
-      reports() {
-        return this.$store.getters['reports/reports']
-      }
+      ...mapGetters({
+        REPORTS: 'reports/reports'
+      }),
     },
     methods: {
+      ...mapActions({
+        REMOVE_REPORT: 'reports/removeReport'
+      }),
       removeReport(id) {
         if (confirm('Удалить отчет?')) {
-          this.$store.dispatch('reports/removeReport', id)
+          this.REMOVE_REPORT(id)
         }
       }
     }

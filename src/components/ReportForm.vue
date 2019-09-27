@@ -32,6 +32,7 @@
   import Select from './Select'
   import _ from 'lodash'
   import data from '../common'
+  import { mapActions } from 'vuex'
 
   export default {
     name: "ReportForm",
@@ -48,6 +49,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        ADD_REPORT: 'reports/addReport'
+      }),
       validate() {
         const id = this.id.trim()
         let regExp
@@ -113,7 +117,7 @@
           date: new Date().toLocaleString().replace(/,/, ''),
           status: this.status[_.random(0, this.status.length - 1)]
         }
-        this.$store.dispatch('reports/addReport', report)
+        this.ADD_REPORT(report)
       }
     }
   }

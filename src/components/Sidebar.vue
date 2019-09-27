@@ -21,11 +21,15 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: "Sidebar",
     methods: {
+      ...mapActions({
+        LOGOUT: 'auth/logout'
+      }),
       logout() {
-        this.$store.dispatch('auth/logout')
+        this.LOGOUT()
         this.$router.push('/login')
       }
     }

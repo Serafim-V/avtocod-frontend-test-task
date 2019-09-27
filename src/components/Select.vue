@@ -10,7 +10,12 @@
           v-model="select"
       >
       <div class="select__list card">
-        <div class="select__item" v-for="item in items" :key="item" @click="changeSelect(item, $event)">
+        <div
+          class="select__item"
+          v-for="item in items"
+          :key="item"
+          @click="changeSelect(item, $event)"
+        >
           {{ item }}
         </div>
       </div>
